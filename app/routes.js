@@ -1,7 +1,6 @@
 const notFound = (req, res) => res.write('Error 404 no se encontro la ruta');
 
 const Router = (handler, url, method) => {
-  console.log('Se esta solicitando a :', url);
   if (url === '/favicon.ico') {
     return notFound;
   }

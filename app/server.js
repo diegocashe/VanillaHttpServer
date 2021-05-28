@@ -10,11 +10,13 @@ const onRequest = async (request, response) => {
   const { method, url, headers } = request;
   const controller = Router(handler, url, method);
   try {
-    let body = [];
+    let body = ''; // or [] 
+    request.setEncoding('utf-8')
     request.on('data', (chunk) => {
-      body.push(chunk);
+      // body.push(chunk); // or
+      body += chunk
     }).on('end', () => {
-      body = Buffer.concat(body).toString();
+      // body = Buffer.concat(body).toString(); // or
       headers.body = body;
       request.headers = headers;
       controller(request, response);
